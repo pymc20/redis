@@ -1,0 +1,25 @@
+@startuml uml
+class Redis {
+    private Validation validation
+    private Connect connect
+    private Create create
+    private Read read
+    private Update update
+    private Delete delete
+    public Redis(const char* addr, int port)
+    public int create()
+    public int read()
+    public int update()
+    public int delete()
+}
+class Connect {
+    private int socket
+    public Connect(const char* addr, int port)
+    public int getSocket()
+}
+class Validation
+class Create
+class Read
+class Update
+class Delete
+@enduml
