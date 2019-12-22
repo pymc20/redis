@@ -7,7 +7,6 @@ int main(int argc, char** argv)
     Connect* redis_socket;
     if(-1 == redis->isConnect())
     {
-        printf("test1\n");
         return 0;
     }
     else

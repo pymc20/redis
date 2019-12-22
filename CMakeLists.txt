@@ -1,0 +1,1 @@
+ADD_EXECUTABLE( a.out ./src/Main.cpp ./src/Connect/Connect.cpp ./src/Redis/Redis.cpp)
