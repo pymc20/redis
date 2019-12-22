@@ -5,17 +5,18 @@ class Redis {
     private Create create
     private Read read
     private Update update
-    private Delete delete
+    private Erase erase
     public Redis(const char* addr, int port)
     public int create()
     public int read()
     public int update()
-    public int delete()
+    public int erase()
 }
 class Connect {
-    private int socket
+    private int redis_socket
+    private int connect_status
     public Connect(const char* addr, int port)
-    public int getSocket()
+    public int send(int type, const char* query)
 }
 class Validation
 class Create

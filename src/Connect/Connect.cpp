@@ -2,14 +2,19 @@
 
 Connect::Connect(const char* addr, int port)
 {
-    struct sockaddr_in redis_server;
+    Connect::addr = addr;
+    Connect::port = port;
+};
 
+int Connect::redisConnect()
+{
     Connect::redis_socket = socket( PF_INET, SOCK_STREAM, 0);
     
     if( -1 == Connect::redis_socket)
     {
         printf("socket 생성 실패\n");
-        exit(1);
+        Connect::connect_status = -1;
+        return -1;
     }
 
     memset( &redis_server, 0, sizeof( redis_server ) );
@@ -20,7 +25,23 @@ Connect::Connect(const char* addr, int port)
     if(-1 == connect(redis_socket, (struct sockaddr*)&redis_server, sizeof(redis_server)))
     {
         printf("접속 실패\n");
-        exit(1);
+        connect_status = -1;
+        return -1;
     }
+    return 1;
+};
 
+int Connect::isConnect()
+{
+    return connect_status;
+};
+
+int Connect::redisSend(const char* query)
+{
+    char* buff;
+    send(redis_socket, query, strlen(query), 0);
+    printf("%s\n",query);
+    recv(redis_socket, buff, BUFF_SIZE, 0);
+    printf("%s\n", buff);
+    return 0;
 };
