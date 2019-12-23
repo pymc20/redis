@@ -3,17 +3,18 @@
 
 Redis::Redis(const char* addr, int port)
 {
-    Redis::redis_connect = new Connect(addr, port);
+    redis_connect = new Connect(addr, port);
 };
 
 Redis::~Redis()
 {
-    delete Redis::redis_connect;
+    redis_connect->disConnect();
+    delete redis_connect;
 };
 
 int Redis::isConnect()
 {
-    if( -1 == Redis::redis_connect->isConnect())
+    if( -1 == redis_connect->isConnect())
     {
         return -1;
     }

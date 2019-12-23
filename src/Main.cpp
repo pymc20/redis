@@ -11,12 +11,11 @@ int main(int argc, char** argv)
     }
     else
     {
-        printf("test2\n");
         redis_socket = redis->getSocket();
     }
     redis_socket->redisSend("ping\r\n");
-    const char *query = redis->createQuery(SCHEMA, "{\"parentId\": \"parentId\",\"nodeId\":\"nodeId\"}");
+    const char *query = redis->createQuery(SCHEMA, "{\"parentId\": \"tt\",\"nodeId\":\"nodeId\"}");
     redis_socket->redisSend(query);
-    
+
     return 0;
 }

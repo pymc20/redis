@@ -6,7 +6,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <string.h>
-#define BUFF_SIZE 1024
+#include <unistd.h>
+#define BUFF_SIZE 4096
 
 
 class Connect

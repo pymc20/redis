@@ -1,4 +1,5 @@
 #include "Create.h"
+#include "../Validation/Validation.h"
 #include <string>
 
 using namespace rapidjson;
@@ -20,13 +21,13 @@ const char *Create::getQuery()
 
 int Create::createSchemaByQuery()
 {
+    Validation *validation = new Validation();
     Document doc;
     doc.Parse(query);
     Value::ConstMemberIterator itr = doc.FindMember("nodeId");
     std::string nodeId;
     if (itr == doc.MemberEnd())
     {
-        printf("return\n");
         return -1;
     }
     else
@@ -39,6 +40,11 @@ int Create::createSchemaByQuery()
         if(!itr->value.IsString())
         {
             doc["parentId"] = "root";
+        }
+        else
+        {
+            if(validation->isStringEmpty(itr->value.GetString()) == -1)
+                doc["parentId"] = "root";
         }
     }
     else

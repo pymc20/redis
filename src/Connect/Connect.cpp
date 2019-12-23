@@ -38,10 +38,17 @@ int Connect::isConnect()
 
 int Connect::redisSend(const char* query)
 {
-    char* buff;
-    send(redis_socket, query, strlen(query), 0);
-    printf("%s\n",query);
+    int length = strlen(query);
+    char buff[65536];
+    send(redis_socket, query, length, 0);
+    printf("%s",query);
     recv(redis_socket, buff, BUFF_SIZE, 0);
-    printf("%s\n", buff);
+    printf("%s", buff);
     return 0;
+};
+
+int Connect::disConnect()
+{   
+    close(redis_socket);
+    return 1;
 };

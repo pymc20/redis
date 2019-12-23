@@ -1,1 +1,7 @@
-ADD_EXECUTABLE( a.out ./src/Main.cpp ./src/Connect/Connect.cpp ./src/Redis/Redis.cpp ./src/Create/Create.cpp)
+ADD_EXECUTABLE( a.out
+                ./src/Main.cpp
+                ./src/Connect/Connect.cpp
+                ./src/Redis/Redis.cpp
+                ./src/Create/Create.cpp
+                ./src/Validation/Validation.cpp
+                )
