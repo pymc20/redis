@@ -15,5 +15,8 @@ int main(int argc, char** argv)
         redis_socket = redis->getSocket();
     }
     redis_socket->redisSend("ping\r\n");
+    const char *query = redis->createQuery(SCHEMA, "{\"parentId\": \"parentId\",\"nodeId\":\"nodeId\"}");
+    redis_socket->redisSend(query);
+    
     return 0;
 }

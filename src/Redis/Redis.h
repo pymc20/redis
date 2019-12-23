@@ -11,7 +11,7 @@ class Redis
         void redisConnect();
         Connect* getSocket();
         int isConnect();
-        int create(int type, const char* query);
+        const char *createQuery(int type, const char* json);
         int read();
         int update();
         int erase();
