@@ -1,5 +1,6 @@
 @startuml uml
-class Redis {
+class Redis
+{
     private Validation validation
     private Connect connect
     private Create create
@@ -12,14 +13,34 @@ class Redis {
     public int update()
     public int erase()
 }
-class Connect {
-    private int redis_socket
-    private int connect_status
-    public Connect(const char* addr, int port)
-    public int send(int type, const char* query)
+class Connect
+{
+    private const char* addr;
+    private int port;
+    private int connect_status;
+    private int redis_socket;
+    private struct sockaddr_in redis_server;
+    public Connect(const char* addr, int port);
+    public int isConnect();
+    public int redisConnect();
+    public int disConnect();
+    public int redisSend(const char* query);
 }
 class Validation
+{
+    public int isStringEmpty(const char *string);
+}
 class Create
+{
+    private int type;
+    private const char *json;
+    private Connect *redis_connect;
+    public Create(int type, std::map<const char *, const char *> data);
+    public Create(int type, const char *json, Connect *connect);
+    public int execute();
+    public int createSchemaByQuery();
+    public int createNodeByQuery();
+}
 class Read
 class Update
 class Delete
