@@ -34,8 +34,9 @@ void Redis::redisConnect()
     redis_connect->redisConnect();
 };
 
-const char *Redis::createQuery(int type, const char *json)
+int Redis::create(int type, const char *json)
 {
-    Create *create = new Create(SCHEMA, json);
-    return create->getQuery();
+    Create *create = new Create(SCHEMA, json, redis_connect);
+    create->execute();
+    return 1;
 };

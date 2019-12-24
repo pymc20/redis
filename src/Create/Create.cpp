@@ -4,26 +4,27 @@
 
 using namespace rapidjson;
 
-Create::Create(int type, const char * json)
+Create::Create(int type, const char * json, Connect *connect)
 {
     Create::type = type;
-    Create::query = json;
+    Create::json = json;
+    Create::redis_connect = connect;
 };
 
-const char *Create::getQuery()
+int Create::execute()
 {
     if(type == 1)
     {
         createSchemaByQuery();
     }
-    return query;
+    return 1;
 };
 
 int Create::createSchemaByQuery()
 {
     Validation *validation = new Validation();
     Document doc;
-    doc.Parse(query);
+    doc.Parse(json);
     Value::ConstMemberIterator itr = doc.FindMember("nodeId");
     std::string nodeId;
     if (itr == doc.MemberEnd())
@@ -62,7 +63,7 @@ int Create::createSchemaByQuery()
     StringBuffer buffer;
     Writer<StringBuffer> writer(buffer);
     doc.Accept(writer);
-    query = tempQuery.c_str();
+    redis_connect->redisSend(tempQuery.c_str());
     return 1;
 };
 

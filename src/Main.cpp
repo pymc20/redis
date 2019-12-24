@@ -14,8 +14,14 @@ int main(int argc, char** argv)
         redis_socket = redis->getSocket();
     }
     redis_socket->redisSend("ping\r\n");
-    const char *query = redis->createQuery(SCHEMA, "{\"parentId\": \"tt\",\"nodeId\":\"nodeId\"}");
-    redis_socket->redisSend(query);
-
+    int result = redis->create(SCHEMA, "{\"parentId\": \"tt\",\"nodeId\":\"nodeId\"}");
+    if(result == -1)
+    {
+        printf("실패");
+    }
+    else
+    {
+        printf("성공");
+    }
     return 0;
 }
