@@ -1,17 +1,14 @@
 @startuml uml
 class Redis
 {
-    private Validation validation
-    private Connect connect
-    private Create create
-    private Read read
-    private Update update
-    private Erase erase
+    private Connect redis_connect
     public Redis(const char* addr, int port)
-    public int create()
-    public int read()
+    public ~Redis();
+    public int isConnect();
+    public int create(int type, const char* json)
+    public int read(int type, const char *key)
     public int update()
-    public int erase()
+    public int erase(int type, const char *key)
 }
 class Connect
 {
@@ -42,6 +39,24 @@ class Create
     public int createNodeByQuery();
 }
 class Read
+{
+    private int type;
+    private const char *key;
+    private Connect *redis_connect;
+    private int readSchemaKeys();
+    public Read(int type, const char*key, Connect *connect);
+    public ~Read();
+    public int execute();
+}
 class Update
-class Delete
+class Erase
+{
+    private int eraseSchema();
+    private int type;
+    private const char *key;
+    private Connect *redis_connect;
+    public Erase(int type, const char *key, Connect *redis_connect);
+    public ~Erase();
+    public int execute();
+}
 @enduml

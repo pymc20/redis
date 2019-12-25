@@ -12,6 +12,8 @@ SET ( SRC_FILES
         ./src/Redis/Redis.cpp
         ./src/Create/Create.cpp
         ./src/Validation/Validation.cpp
+        ./src/Read/Read.cpp
+        ./src/Erase/Erase.cpp
         )
 
 SET ( CMAKE_CXX_COMPILER "clang++" )

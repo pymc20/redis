@@ -4,6 +4,7 @@
 Redis::Redis(const char* addr, int port)
 {
     redis_connect = new Connect(addr, port);
+    redis_connect->redisConnect();
 };
 
 Redis::~Redis()
@@ -23,19 +24,23 @@ int Redis::isConnect()
     }
 };
 
-Connect* Redis::getSocket()
-{
-    return redis_connect;
-};
-
-void Redis::redisConnect()
-{
-    redis_connect->redisConnect();
-};
-
 int Redis::create(int type, const char *json)
 {
-    Create *create = new Create(SCHEMA, json, redis_connect);
+    Create *create = new Create(type, json, redis_connect);
     create->execute();
     return 1;
 };
+
+int Redis::read(int type, const char *key)
+{
+    Read *read = new Read(type, key, redis_connect);
+    read->execute();
+    return 1;
+}
+
+int Redis::erase(int type, const char *key)
+{
+    Erase *erase = new Erase(type, key, redis_connect);
+    erase->execute();
+    return 1;
+}

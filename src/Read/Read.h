@@ -1,20 +1,20 @@
-#ifndef _ERASE_H_
-#define _ERASE_H_
+#ifndef _READ_H_
+#define _READ_H_
 #include <string>
 #include "../Connect/Connect.h"
 #include "../Common/CommonType.h"
 
-class Erase
+class Read
 {
     public :
-        Erase(int type, const char *key, Connect *redis_connect);
-        ~Erase();
+        Read(int type, const char*key, Connect *connect);
+        ~Read();
         int execute();
     private :
-        int eraseSchema();
         int type;
         const char *key;
         Connect *redis_connect;
+        int readSchemaKeys();
 };
 
 #endif

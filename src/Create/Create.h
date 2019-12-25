@@ -4,9 +4,8 @@
 #include "../../include/rapidjson/document.h"
 #include "../../include/rapidjson/prettywriter.h"
 #include "../Connect/Connect.h"
+#include "../Common/CommonType.h"
 
-#define SCHEMA 1
-#define NODE 2
 
 class Create
 {
