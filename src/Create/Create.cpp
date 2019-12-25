@@ -11,9 +11,15 @@ Create::Create(int type, const char * json, Connect *connect)
     Create::redis_connect = connect;
 };
 
+Create::~Create()
+{
+    delete redis_connect;
+    delete[] json;
+}
+
 int Create::execute()
 {
-    if(type == 1)
+    if(type == SCHEMA)
     {
         createSchemaByQuery();
     }

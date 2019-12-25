@@ -16,7 +16,6 @@ SET ( SRC_FILES
 
 SET ( CMAKE_CXX_COMPILER "clang++" )
 
-ADD_COMPILE_OPTIONS ( -g -Wall )
-SET ( CMAKE_EXE_LINKER_FLAGS "-static -Wl,--gc-sections" )
+ADD_COMPILE_OPTIONS ( -g -Wall -std=c++14 )
 
 ADD_EXECUTABLE ( ${OUTPUT_FILE} ${SRC_FILES} )

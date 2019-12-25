@@ -6,6 +6,11 @@ Connect::Connect(const char* addr, int port)
     Connect::port = port;
 };
 
+Connect::~Connect()
+{
+    disConnect();
+}
+
 int Connect::redisConnect()
 {
     Connect::redis_socket = socket( PF_INET, SOCK_STREAM, 0);

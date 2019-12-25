@@ -8,7 +8,6 @@ Redis::Redis(const char* addr, int port)
 
 Redis::~Redis()
 {
-    redis_connect->disConnect();
     delete redis_connect;
 };
 

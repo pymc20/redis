@@ -14,6 +14,7 @@ class Connect
 {
     public :
         Connect(const char* addr, int port);
+        ~Connect();
         int isConnect();
         int redisConnect();
         int disConnect();
