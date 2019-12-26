@@ -49,6 +49,16 @@ class Read
     public int execute();
 }
 class Update
+{
+    private int type;
+    private const char *json;
+    private Connect *redis_connect;
+    private const char *schemaName;
+    private int updateSchema();
+    public Update(int type, const char *json, Connect *redis_connect);
+    public ~Update();
+    public int execute();
+}
 class Erase
 {
     private int eraseSchema();

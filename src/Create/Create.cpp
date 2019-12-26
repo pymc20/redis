@@ -1,12 +1,12 @@
 #include "Create.h"
 #include "../Validation/Validation.h"
-#include <string>
 
 using namespace rapidjson;
 
-Create::Create(int type, const char * json, Connect *connect)
+Create::Create(int type, const char * json, Connect *connect, const char *schemaName)
 {
     Create::type = type;
+    Create::schemaName = schemaName;
     Create::json = json;
     Create::redis_connect = connect;
 };
@@ -14,6 +14,7 @@ Create::Create(int type, const char * json, Connect *connect)
 Create::~Create()
 {
     delete redis_connect;
+    delete[] schemaName;
     delete[] json;
 }
 
@@ -31,16 +32,20 @@ int Create::createSchemaByQuery()
     Validation *validation = new Validation();
     Document doc;
     doc.Parse(json);
-    Value::ConstMemberIterator itr = doc.FindMember("nodeId");
-    std::string nodeId;
-    if (itr == doc.MemberEnd())
+    std::string schemaId;
+    Value::ConstMemberIterator itr = doc.MemberEnd();
+    if(schemaName == "")
     {
-        return -1;
+        itr = doc.FindMember("schemaId");
+        if (itr == doc.MemberEnd())
+        {
+            return -1;
+        }
+        else
+            schemaId = itr->value.GetString();
     }
     else
-    {
-        nodeId = itr->value.GetString();
-    }
+        schemaId = schemaName;
     itr = doc.FindMember("parentId");
     if (itr != doc.MemberEnd())
     {
@@ -57,7 +62,7 @@ int Create::createSchemaByQuery()
     else
         doc.AddMember("parentId", "root", doc.GetAllocator());
     std::string blank = " ";
-    std::string tempQuery = "hmset " + nodeId + blank;
+    std::string tempQuery = "hmset " + schemaId + blank;
     itr = doc.MemberBegin();
     for(;itr != doc.MemberEnd(); itr++)
     {

@@ -15,6 +15,7 @@ class Read
         const char *key;
         Connect *redis_connect;
         int readSchemaKeys();
+        int readSchemaList();
 };
 
 #endif

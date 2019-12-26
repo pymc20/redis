@@ -17,7 +17,7 @@ int Read::execute()
 {
     if(type == SCHEMA)
     {
-        readSchemaKeys();
+        readSchemaList();
     }
     return 1;
 };
@@ -25,6 +25,13 @@ int Read::execute()
 int Read::readSchemaKeys()
 {
     std::string query = "hkeys " + std::string(key) + "\r\n";
+    redis_connect->redisSend(query.c_str());
+    return 1;
+}
+
+int Read::readSchemaList()
+{
+    std::string query = "keys *\r\n";
     redis_connect->redisSend(query.c_str());
     return 1;
 }
