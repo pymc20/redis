@@ -16,8 +16,8 @@ class Create
         ~Create();
         int execute();
     private :
-        int createSchemaByQuery();
-        int createNodeByQuery();
+        int createSchemaByJSON();
+        int createNodeByJSON();
         int type;
         const char *schemaName;
         const char *json;

@@ -22,12 +22,16 @@ int Create::execute()
 {
     if(type == SCHEMA)
     {
-        createSchemaByQuery();
+        createSchemaByJSON();
+    }
+    else if(type == NODE)
+    {
+        createNodeByJSON();
     }
     return 1;
 };
 
-int Create::createSchemaByQuery()
+int Create::createSchemaByJSON()
 {
     Validation *validation = new Validation();
     Document doc;
@@ -75,10 +79,12 @@ int Create::createSchemaByQuery()
     Writer<StringBuffer> writer(buffer);
     doc.Accept(writer);
     redis_connect->redisSend(tempQuery.c_str());
+    std::string schemaListQuery = "linsert schema " + schemaId + "\r\n";
+    redis_connect->redisSend(schemaListQuery.c_str());
     return 1;
 };
 
-int Create::createNodeByQuery()
+int Create::createNodeByJSON()
 {
 
     return 1;
