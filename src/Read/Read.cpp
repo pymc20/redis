@@ -31,7 +31,7 @@ int Read::readSchemaKeys()
 
 int Read::readSchemaList()
 {
-    std::string query = "keys *\r\n";
+    std::string query = "keys schema\r\n";
     redis_connect->redisSend(query.c_str());
     return 1;
 }
