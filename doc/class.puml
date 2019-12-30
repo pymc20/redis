@@ -30,13 +30,16 @@ class Validation
 class Create
 {
     private int type;
+    private const char *schemaName;
     private const char *json;
     private Connect *redis_connect;
+    private int createSchemaByJSON();
+    private int createNodeByJSON();
     public Create(int type, std::map<const char *, const char *> data);
     public Create(int type, const char *json, Connect *connect);
+    public ~Create();
     public int execute();
-    public int createSchemaByQuery();
-    public int createNodeByQuery();
+    
 }
 class Read
 {
@@ -44,6 +47,7 @@ class Read
     private const char *key;
     private Connect *redis_connect;
     private int readSchemaKeys();
+    private int readSchemaList();
     public Read(int type, const char*key, Connect *connect);
     public ~Read();
     public int execute();
