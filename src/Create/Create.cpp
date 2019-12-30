@@ -38,7 +38,7 @@ int Create::createSchemaByJSON()
     doc.Parse(json);
     std::string schemaId;
     Value::ConstMemberIterator itr = doc.MemberEnd();
-    if(schemaName == "")
+    if(validation->isStringEmpty(schemaName) == -1)
     {
         itr = doc.FindMember("schemaId");
         if (itr == doc.MemberEnd())
@@ -86,6 +86,14 @@ int Create::createSchemaByJSON()
 
 int Create::createNodeByJSON()
 {
-
+    // Validation *validation = new Validation();
+    Document doc;
+    doc.Parse(json);
+    Value::ConstMemberIterator itr = doc.MemberBegin();
+    for(;itr != doc.MemberEnd(); itr++)
+    {
+        itr->name.GetString();
+        itr->value.GetString();
+    }
     return 1;
 };

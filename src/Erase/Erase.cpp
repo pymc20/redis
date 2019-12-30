@@ -26,4 +26,5 @@ int Erase::eraseSchema()
 {
     std::string query = "del " + std::string(key);
     redis_connect->redisSend(query.c_str());
+    return 1;
 };
