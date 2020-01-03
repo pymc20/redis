@@ -1,4 +1,5 @@
 #include "Read.h"
+#include <iostream>
 
 Read::Read(int type, const char *key, Connect *connect)
 {
@@ -32,6 +33,7 @@ int Read::readSchemaKeys()
 int Read::readSchemaList()
 {
     std::string query = "keys schema\r\n";
+    std::string result;
     redis_connect->redisSend(query.c_str());
     return 1;
 }

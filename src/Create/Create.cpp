@@ -90,10 +90,10 @@ int Create::createNodeByJSON()
     Document doc;
     doc.Parse(json);
     Value::ConstMemberIterator itr = doc.MemberBegin();
+    std::map<std::string,std::string> json_to_map;
     for(;itr != doc.MemberEnd(); itr++)
     {
-        itr->name.GetString();
-        itr->value.GetString();
+        json_to_map.insert(std::pair<std::string,std::string>(itr->name.GetString(),itr->value.GetString()));
     }
     return 1;
 };
