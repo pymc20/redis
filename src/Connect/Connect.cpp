@@ -41,7 +41,7 @@ int Connect::isConnect()
     return connect_status;
 };
 
-int Connect::redisSend(const char* query)
+std::string Connect::redisSend(const char* query)
 {
     int length = strlen(query);
     char buff[65536];
@@ -49,7 +49,8 @@ int Connect::redisSend(const char* query)
     printf("%s",query);
     recv(redis_socket, buff, BUFF_SIZE, 0);
     printf("%s", buff);
-    return 0;
+    std::string result = buff;
+    return result;
 };
 
 int Connect::disConnect()

@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <string.h>
 #include <unistd.h>
+#include <string>
 #define BUFF_SIZE 4096
 
 
@@ -18,7 +19,7 @@ class Connect
         int isConnect();
         int redisConnect();
         int disConnect();
-        int redisSend(const char* query);
+        std::string redisSend(const char* query);
     private :
         const char* addr;
         int port;
