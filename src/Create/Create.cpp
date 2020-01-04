@@ -14,8 +14,8 @@ Create::Create(int type, const char * json, Connect *connect, const char *schema
 Create::~Create()
 {
     delete redis_connect;
-    delete[] schemaName;
-    delete[] json;
+    delete schemaName;
+    delete json;
 }
 
 int Create::execute()

@@ -9,7 +9,7 @@ Erase::Erase(int type, const char *key, Connect *redis_connect)
 
 Erase::~Erase()
 {
-    delete[] key;
+    delete key;
     delete redis_connect;
 };
 

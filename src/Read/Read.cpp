@@ -9,7 +9,7 @@ Read::Read(int type, const char *key, Connect *connect)
 
 Read::~Read()
 {
-    delete[] key;
+    delete key;
     delete redis_connect;
 };
 

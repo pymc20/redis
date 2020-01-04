@@ -12,7 +12,7 @@ Update::Update(int type, const char *json, Connect *redis_connect, const char *s
 
 Update::~Update()
 {
-    delete[] json;
+    delete json;
     delete redis_connect;
 };
 
