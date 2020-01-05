@@ -27,3 +27,13 @@ int Validation::isStringEmpty(const char *string)
         return -1;
     }
 };
+
+int Validation::isJSON(const char *String)
+{
+    return 1;
+};
+
+int Validation::isEqualsJSON(const char *firstJSON, const char *secondJSON)
+{
+    return 1;
+}
