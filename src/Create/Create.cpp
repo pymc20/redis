@@ -1,4 +1,5 @@
 #include "Create.h"
+#include "../Read/Read.h"
 #include "../Validation/Validation.h"
 
 using namespace rapidjson;
@@ -86,7 +87,13 @@ int Create::createSchemaByJSON()
 
 int Create::createNodeByJSON()
 {
-    // Validation *validation = new Validation();
+    Validation *validation = new Validation();
+    if(validation->isStringEmpty(schemaName) == -1)
+    {
+        std::cout << "스키마명 필수" << std::endl;
+        return -1;
+    }
+    Read *read = new Read(SCHEMA, "", redis_connect);
     Document doc;
     doc.Parse(json);
     Value::ConstMemberIterator itr = doc.MemberBegin();

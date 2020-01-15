@@ -7,7 +7,7 @@
 class Read
 {
     public :
-        Read(int type, const char*key, Connect *connect);
+        Read(int type, const char *key, Connect *connect);
         ~Read();
         int execute();
     private :
@@ -16,6 +16,7 @@ class Read
         Connect *redis_connect;
         int readSchemaKeys();
         int readSchemaList();
+        std::string readSchema();
 };
 
 #endif

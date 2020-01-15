@@ -2,6 +2,7 @@
 #define _CREATE_H_
 #include <map>
 #include <string>
+#include <iostream>
 #include "../../include/rapidjson/document.h"
 #include "../../include/rapidjson/prettywriter.h"
 #include "../Connect/Connect.h"

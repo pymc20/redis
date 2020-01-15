@@ -37,3 +37,12 @@ int Read::readSchemaList()
     redis_connect->redisSend(query.c_str());
     return 1;
 }
+
+std::string Read::readSchema()
+{
+    std::string schemaName = key;
+    std::string query = "hgetall " + schemaName + "\r\n";
+    std::string result;
+    redis_connect->redisSend(query.c_str());
+    return "";
+}
